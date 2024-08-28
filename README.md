@@ -32,6 +32,10 @@ The application uses React's `useState` hook to manage the state of the tasks an
    cd react-todo-list
     ```
 2. **Install Dependencies:** Make sure you have Node.js and npm installed. Then, run:
-    ```npm install```
-3. **Run the Application**:
-    ```npm start```
+    ```
+    npm install
+    ```
+4. **Run the Application**:
+    ```
+    npm start
+    ```
