@@ -35,3 +35,7 @@ The application uses React's `useState` hook to manage the state of the tasks an
     ```npm install```
 3. **Run the Application**:
     ```npm start```
+
+## Demo
+
+[Watch the demo video](demo/todo-app.mp4)
