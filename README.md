@@ -42,4 +42,4 @@ The application uses React's `useState` hook to manage the state of the tasks an
 
 ## Demo
 
-[Watch the demo video](demo/todo-app.mp4)
+![Demo](demo/todo-app.gif)
