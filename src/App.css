@@ -1,38 +1,212 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #153677, #4e085f);
+  padding: 10px;
+}
+
+.todo-app {
+  width: 100%;
+  max-width: 540px;
+  background: #fff;
+  margin: 100px auto 20px;
+  padding: 40px 30px 70px;
+  border-radius: 10px;
+}
+.todo-app h2 {
+  color: #002765;
+  align-items: center;
+  margin-bottom: 25px;
+  font-size: 1.8em;
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.row {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  background: #edeef0;
+  border-radius: 30px;
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 10px;
+  font-weight: 14px;
+}
+#input-box-button {
+  background: #ff5945;
+  color: #fff;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 600;
+  transition: transform 0.3s ease;
+}
+#input-box-button:hover {
+  transform: scale(1.05);
+}
+ul li {
+  list-style: none;
+  font-size: 1em;
+  padding: 12px 8px 12px 5px;
+  user-select: none;
+  cursor: pointer;
+  position: relative;
 }
 
-.App-link {
-  color: #61dafb;
+.todo-item-text {
+  margin-left: 8px;
+  transition: color 0.3s ease;
+  color: #000;
 }
-
-@keyframes App-logo-spin {
+@keyframes slideIn {
   from {
-    transform: rotate(0deg);
+      opacity: 0;
+      transform: translateX(-10%);
   }
   to {
-    transform: rotate(360deg);
+      opacity: 1;
+      transform: translateX(0);
+  }
+}
+
+.todo-item {
+  animation: slideIn 0.5s ease-out;
+}
+
+.delete-button {
+  position: absolute;
+  right: 10px;
+  background-color: transparent;  /* Transparent background */
+  border: none;                   /* No border */
+  border-radius: 50%;             /* Circular shape */
+  width: 24px;                    /* Width of the button */
+  height: 24px;
+  cursor: pointer;
+  font-size: 1.2em;
+  font-weight: 500; 
+  color: #000;                    
+  transition: background-color 0.1s ease;
+  opacity: 0;
+}
+.delete-button:hover {
+  background-color: #e0e0e0;  /* Slight gray background color on hover */
+}
+li:hover .delete-button {
+  opacity: 1;
+}
+
+/* CHECKBOX STYLING */
+input[type="checkbox"] {
+  display: none;
+}
+
+.cbx {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+}
+
+.cbx span {
+  display: inline-block;
+  vertical-align: middle;
+  transform: translate3d(0, 0, 0);
+}
+
+.cbx span:first-child {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  transform: scale(1);
+  vertical-align: middle;
+  border: 1px solid #B9B8C3;
+  transition: all 0.2s ease;
+}
+
+.cbx span:first-child svg {
+  position: absolute;
+  z-index: 1;
+  top: 8px;
+  left: 6px;
+  fill: none;
+  stroke: white;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 16px;
+  stroke-dashoffset: 16px;
+  transition: all 0.3s ease;
+  transition-delay: 0.1s;
+  transform: translate3d(0, 0, 0);
+}
+
+.cbx span:first-child:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: #ff5945;
+  display: block;
+  transform: scale(0);
+  opacity: 1;
+  border-radius: 50%;
+  transition-delay: 0.2s;
+}
+
+.cbx span:last-child {
+  margin-left: 8px;
+}
+
+
+.cbx:hover span:first-child {
+  border-color: #ff5945;
+}
+
+.inp-cbx:checked + .cbx span:first-child {
+  border-color: #ff5945;
+  background: #ff5945;
+  animation: check-15 0.6s ease;
+}
+
+.inp-cbx:checked + .cbx span:first-child svg {
+  stroke-dashoffset: 0;
+}
+
+.inp-cbx:checked + .cbx span:first-child:before {
+  transform: scale(2.2);
+  opacity: 0;
+  transition: all 0.6s ease;
+}
+
+.inp-cbx:checked + .cbx span:last-child {
+  color: #B9B8C3;
+  transition: all 0.3s ease;
+}
+
+.inp-cbx:checked + .cbx span:last-child:after {
+  transform: scaleX(1);
+  transition: all 0.3s ease;
+}
+
+@keyframes check-15 {
+  50% {
+    transform: scale(1.2);
   }
 }

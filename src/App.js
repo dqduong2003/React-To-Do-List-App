@@ -1,25 +1,55 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState, useEffect  } from 'react';
+import ToDoList from './ToDoList';
+import ToDoInput from './ToDoInput';
 
-function App() {
+function ToDoApp() {
+  const [tasks, setTasks] = useState(() => {
+    const storedTasks = localStorage.getItem('tasks');
+    return storedTasks ? JSON.parse(storedTasks) : [];
+  });
+  const [taskText, setTaskText] = useState('');
+
+  // Save tasks to localStorage whenever the tasks state changes
+  useEffect(() => {
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks]);
+
+  const handleAddTask = () => {
+    if (taskText.trim()) {  
+        const newTask = createToDoItem(Date.now(), taskText);
+        setTasks([...tasks, newTask]); 
+        setTaskText('');  
+    }
+  };
+
+  // Function to handle input text change
+  const handleTaskTextChange = (e) => {
+      setTaskText(e.target.value);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container'>
+      <div className='todo-app'>
+          <h2>To-Do List</h2>
+          <ToDoInput
+              taskText={taskText}
+              onAddTask={handleAddTask}
+              onTaskTextChange={handleTaskTextChange}
+          />
+          <ToDoList tasks={tasks} setTasks={setTasks} />
+      </div>
     </div>
   );
 }
 
-export default App;
+const createToDoItem = (id, text, completed = false) => {
+  return {
+      id: id,
+      text: text,
+      completed: completed
+  };
+};
+
+
+export default ToDoApp;
