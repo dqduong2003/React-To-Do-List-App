@@ -28,8 +28,8 @@ The application uses React's `useState` hook to manage the state of the tasks an
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/react-todo-list.git
-   cd react-todo-list
+   git clone https://github.com/ydqduong2003/React-To-Do-List-App.git
+   cd React-To-Do-List-App
     ```
 2. **Install Dependencies:** Make sure you have Node.js and npm installed. Then, run:
     ```
